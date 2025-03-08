@@ -8,24 +8,24 @@ const GsapScrollTrigger = () => {
   // TODO: Implement the gsap scroll trigger
 const scrollref = useRef()
 useGSAP(()=>{
-const boxen=gsap.utils.toArray(scrollref.current.children)
+const boxes=gsap.utils.toArray(scrollref.current.children)
 
-boxes.foreach((box)=>{
-  gsap.to((box), {
-x:150,
-rotation:360 * (box.indexOf(box)),
-borderRadius:"100%",
-escale:1.5,
-duration:6,
-ScrollTrigger:{
-  trigger:box,
-  start:'buttom, buttom',
-  end:'top 10%',
-  scrub:true
-},
-ease:'power1.inOut'
-  })
-})
+boxes.forEach((box, index) => {
+  gsap.to(box, {
+    x: 150,
+    rotation: 360 * index, 
+    borderRadius: "100%",
+    scale: 1.5, 
+    duration: 6,
+    scrollTrigger: { 
+      trigger: box,
+      start: 'bottom bottom', 
+      end: 'top 10%',
+      scrub: true,
+    },
+    ease: 'power1.inOut',
+  });
+});
 },[])
   return (
     <main>
